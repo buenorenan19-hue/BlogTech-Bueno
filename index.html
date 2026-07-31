@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogTech Bueno - Avanço da IA</title>
+    <style>
+        /* --- RESET E ESTILOS BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #050b05;
+            color: #d1ffd1;
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* --- CABEÇALHO VERDE RADIOATIVO --- */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: #0a150a;
+            border-bottom: 2px solid #00ff66;
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.4);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #00ff66;
+            text-shadow: 
+                0 0 5px #00ff66,
+                0 0 15px #00ff66,
+                0 0 30px #00ff66;
+            animation: radioativo 1.8s infinite alternate;
+        }
+
+        header p {
+            color: #a3ffa3;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        article {
+            background-color: #0e1d0e;
+            border: 1px solid #1a3d1a;
+            border-radius: 12px;
+            padding: 35px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.1);
+        }
+
+        /* Efeito de destaque no Card */
+        article:hover {
+            transform: translateY(-6px);
+            border-color: #00ff66;
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.35);
+        }
+
+        h2 {
+            color: #00ff66;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-shadow: 0 0 8px rgba(0, 255, 102, 0.5);
+        }
+
+        p {
+            color: #c2eec2;
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+        }
+
+        .highlight {
+            color: #39ff14;
+            font-weight: bold;
+            text-shadow: 0 0 5px #39ff14;
+        }
+
+        /* --- SEÇÃO DO CONTADOR DE LIKES --- */
+        .like-container {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #1a3d1a;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .like-btn {
+            background: transparent;
+            color: #00ff66;
+            border: 2px solid #00ff66;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+            outline: none;
+        }
+
+        .like-btn:hover {
+            background-color: #00ff66;
+            color: #050b05;
+            box-shadow: 0 0 20px #00ff66;
+        }
+
+        /* Efeito ao clicar no botão */
+        .like-btn:active {
+            transform: scale(0.92);
+        }
+
+        .like-count {
+            font-size: 1.2rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        #contador {
+            color: #39ff14;
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+
+        /* Animação do número pulando ao curtir */
+        .pop {
+            transform: scale(1.4);
+        }
+
+        /* --- ANIMAÇÃO GLOW RADIOATIVO --- */
+        @keyframes radioativo {
+            from {
+                text-shadow: 0 0 5px #00ff66, 0 0 10px #00ff66;
+            }
+            to {
+                text-shadow: 0 0 15px #00ff66, 0 0 30px #00ff66, 0 0 45px #39ff14;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>BlogTech Bueno</h1>
+        <p>Radiação de conhecimento sobre Inteligência Artificial</p>
+    </header>
+
+    <main>
+        <article>
+            <h2>O Avanço Exponencial da Inteligência Artificial</h2>
+            
+            <p>A <span class="highlight">Inteligência Artificial (IA)</span> está evoluindo a passos largos, transformando a forma como interagimos com o mundo digital e físico. O que antes parecia restrito à ficção científica agora é a força motora de inovações globais.</p>
+            
+            <p>Com o avanço das <span class="highlight">Redes Neurais</span> e dos modelos de linguagem em grande escala (LLMs), a IA já é capaz de criar códigos, produzir textos complexos, gerar artes fidedignas e auxiliar médicos em diagnósticos de alta precisão em questão de segundos.</p>
+            
+            <p>À medida que nos aproximamos de sistemas cada vez mais autônomos, o grande desafio reside em equilibrar o progresso tecnológico acelerado com diretrizes éticas e segurança da informação.</p>
+
+            <div class="like-container">
+                <button class="like-btn" id="btnLike">☢️ Curtir Artigo</button>
+                <span class="like-count">Curtidas: <span id="contador">0</span></span>
+            </div>
+        </article>
+    </main>
+
+    <script>
+        const btnLike = document.getElementById('btnLike');
+        const contadorTexto = document.getElementById('contador');
+
+        let curtidas = 0;
+
+        btnLike.addEventListener('click', () => {
+            curtidas++;
+            contadorTexto.textContent = curtidas;
+
+            // Adiciona efeito visual rápido de pulso ao número
+            contadorTexto.classList.add('pop');
+            setTimeout(() => {
+                contadorTexto.classList.remove('pop');
+            }, 200);
+        });
+    </script>
+</body>
+</html>
